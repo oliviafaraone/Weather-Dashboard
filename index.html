@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <title>Weather Dashboard</title>
+</head>
+<body>
+    <header> 
+         <h1 class="text-light bg-dark">Weather Dashboard</h1>
+    </header>
+    <div class="container">
+        <div class="row">
+          <div class="col-4">
+            <h3>Search for a City:</h3>
+            <div class="input-group mb-3">
+                <div class="input-group-append">
+                    <input type="text" class="form-control" placeholder="" aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <button class="btn btn-outline-secondary bg-primary text-light" type="button" id="button-addon2"><i class="glyphicon glyphicon-search"></i></button>
+                </div>
+              </div>
+              <div class="past-cities">
+                  <ul class="city-list"></ul>
+              </div>
+          </div>
+          <div class="col-8">
+            <div class="container">
+                <div class="row"></div>
+                <div class="row">
+                     <h3 class="col-12">5-Day Forecast:</h3>
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                          <h5 class="card-title">Day 1 Weather</h5>
+                          <h6 class="card-subtitle mb-2 text-muted">Icon</h6>
+                          <p class="card-text">Temp:</p>
+                          <p class="card-text">Humidity:</p>
+                        </div>
+                      </div>
+                      <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                          <h5 class="card-title">Day 2 Weather</h5>
+                          <h6 class="card-subtitle mb-2 text-muted">Icon</h6>
+                          <p class="card-text">Temp:</p>
+                          <p class="card-text">Humidity:</p>
+                        </div>
+                      </div>
+                      <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                          <h5 class="card-title">Day 3 Weather</h5>
+                          <h6 class="card-subtitle mb-2 text-muted">Icon</h6>
+                          <p class="card-text">Temp:</p>
+                          <p class="card-text">Humidity:</p>
+                        </div>
+                      </div>
+                      <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                          <h5 class="card-title">Day 4 Weather</h5>
+                          <h6 class="card-subtitle mb-2 text-muted">Icon</h6>
+                          <p class="card-text">Temp:</p>
+                          <p class="card-text">Humidity:</p>
+                        </div>
+                      </div>
+                      <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                          <h5 class="card-title">Day 5 Weather</h5>
+                          <h6 class="card-subtitle mb-2 text-muted">Icon</h6>
+                          <p class="card-text">Temp:</p>
+                          <p class="card-text">Humidity:</p>
+                        </div>
+                      </div>
+                      
+                </div>
+          </div>
+        </div>
+      </div>
+    
+
+    <script src="./assets/script.js"></script>
+</body>
+</html>
