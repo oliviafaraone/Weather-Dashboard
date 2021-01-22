@@ -11,7 +11,7 @@ function displayCity(){
     var api_key = '2793445b72933fa193fcc65752f1319c'
     
     fetch(
-        'http://api.openweathermap.org/data/2.5/forecast?q='
+        'https://api.openweathermap.org/data/2.5/forecast?q='
          + searchCity + '&appid=' + api_key
     )
     .then(function(response){ 
@@ -29,7 +29,7 @@ function displayCity(){
        var lat = response.city.coord.lat;
        var lon = response.city.coord.lon;
        fetch(
-           'http://api.openweathermap.org/data/2.5/uvi?lat=' + lat + '&lon=' + lon + '&appid=' + api_key)
+           'https://api.openweathermap.org/data/2.5/uvi?lat=' + lat + '&lon=' + lon + '&appid=' + api_key)
        .then(function(response){
         return response.json();
        }).then(function(response){
