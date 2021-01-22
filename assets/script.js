@@ -6,6 +6,7 @@ let today = (month + '/' + date + '/' + year);
 
 //search city in weather api
 function displayCity(){
+    
     var searchCity = document.querySelector('#searchCity').value;
     var api_key = '2793445b72933fa193fcc65752f1319c'
     
@@ -17,13 +18,44 @@ function displayCity(){
     return response.json();
     })
     .then(function(response){
-        console.log(response)
-        console.log(response.list);
         var kelTemp = response.list[0].main.temp;
         var fTemp = Math.round((kelTemp-273.15)*9/5+32) ;        
         var humid = response.list[0].main.humidity;
         var wind = response.list[0].wind.speed;
        // var uv = ;
+     //  console.log(response);
+
+       //Calculate UV Index
+       var lat = response.city.coord.lat;
+       var lon = response.city.coord.lon;
+       fetch(
+           'http://api.openweathermap.org/data/2.5/uvi?lat=' + lat + '&lon=' + lon + '&appid=' + api_key)
+       .then(function(response){
+        return response.json();
+       }).then(function(response){
+        var uv = response.value;
+
+        var uvIndex = document.getElementById('uvIndex');
+        uvIndex.innerHTML = 'UV Index: ' + uv ;
+
+        var uvColors =function(){
+            if (uv < 3){
+            uvIndex.setAttribute("class","low");
+        } else if (3 < uv < 6){
+            uvIndex.setAttribute("class","mod");
+        } else if (7 < uv < 8){
+            uvIndex.setAttribute("class","high");
+        } else if (9 < uv < 11){
+            uvIndex.setAttribute("class","vHigh");
+        } else if (12 < uv){
+            uvIndex.setAttribute("class","extr");
+        }
+       };
+
+       uvColors();
+
+    }) 
+       ;
 
        //display city name, temp, hum, wind, UV in city-today div
         var responseContainerEl = document.querySelector('#city-today');
@@ -41,14 +73,12 @@ function displayCity(){
         var windSpeed = document.getElementById('windSpeed');
         windSpeed.innerHTML = 'Wind Speed: ' + wind + ' MPH';
 
-        var uvIndex = document.getElementById('uvIndex');
-        uvIndex.innerHTML = 'UV Index: ' //+ uv 
 
         // Display 5 day forecast
         // Day 1
         var day1 = document.getElementById('card-title1');
-        day1Val = response.list[1].dt;
-        day1ValFmt = moment(day1Val, "x");
+        day1Val = response.list[1].dt_txt;
+        day1ValFmt = moment(day1Val, "YYYY-MM-DD h:mm:ss");
         day1Value = day1ValFmt.format("MM/DD/YYYY");
         day1.innerHTML = day1Value;
 
@@ -63,8 +93,8 @@ function displayCity(){
 
         // Day 2
         var day2 = document.getElementById('card-title2');
-        day2Val = response.list[6].dt;
-        day2ValFmt = moment(day2Val, "x");
+        day2Val = response.list[6].dt_txt;
+        day2ValFmt = moment(day2Val, "YYYY-MM-DD h:mm:ss");
         day2Value = day2ValFmt.format("MM/DD/YYYY");
         day2.innerHTML = day2Value;
 
@@ -79,8 +109,8 @@ function displayCity(){
 
         // Day 3
         var day3 = document.getElementById('card-title3');
-        day3Val = response.list[12].dt;
-        day3ValFmt = moment(day1Val, "x");
+        day3Val = response.list[12].dt_txt;
+        day3ValFmt = moment(day1Val, "YYYY-MM-DD h:mm:ss");
         day3Value = day3ValFmt.format("MM/DD/YYYY");
         day3.innerHTML = day3Value;
 
@@ -95,8 +125,8 @@ function displayCity(){
 
         // Day 4 
         var day4 = document.getElementById('card-title4');
-        day4Val = response.list[18].dt;
-        day4ValFmt = moment(day4Val, "x");
+        day4Val = response.list[18].dt_txt;
+        day4ValFmt = moment(day4Val, "YYYY-MM-DD h:mm:ss");
         day4Value = day4ValFmt.format("MM/DD/YYYY");
         day4.innerHTML = day4Value;
 
@@ -111,8 +141,8 @@ function displayCity(){
 
         // Day 5
         var day5 = document.getElementById('card-title5');
-        day5Val = response.list[24].dt;
-        day5ValFmt = moment(day5Val, "x");
+        day5Val = response.list[24].dt_txt;
+        day5ValFmt = moment(day5Val, "YYYY-MM-DD h:mm:ss");
         day5Value = day5ValFmt.format("MM/DD/YYYY");
         day5.innerHTML = day5Value;
 
@@ -125,12 +155,15 @@ function displayCity(){
         var humid5 = response.list[24].main.humidity;
         humidity5.innerHTML = 'Humidity: ' + humid5 + '%';
 
-        })
+        //empty user input of city and add city name to ul city-list array
+        allCities = [];
 
+        var city = document.getElementById('city-list');
+        city.innerHTML = searchCity;
 
-};
+        allCities.push(searchCity);
 
-//empty user input of city and add city name to ul city-list array
+        })};
 
 
 
