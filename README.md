@@ -21,6 +21,6 @@ THEN I am again presented with current and future conditions for that city
 
 
 Screenshot of site:
-https://github.com/oliviafaraone/Weather-Dashboard/assets/Screen Shot 2021-01-18 at 11.19.51 AM
+https://github.com/oliviafaraone/Weather-Dashboard/assets/live-site.png
 
 Live Site:
