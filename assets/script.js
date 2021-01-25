@@ -22,8 +22,11 @@ function displayCity(){
         var fTemp = Math.round((kelTemp-273.15)*9/5+32) ;        
         var humid = response.list[0].main.humidity;
         var wind = response.list[0].wind.speed;
+        var icon = response.list[0].weather[0].icon;
+        
        // var uv = ;
-     //  console.log(response);
+       console.log(response);
+       console.log(icon);
 
        //Calculate UV Index
        var lat = response.city.coord.lat;
@@ -59,10 +62,13 @@ function displayCity(){
 
        //display city name, temp, hum, wind, UV in city-today div
         var responseContainerEl = document.querySelector('#city-today');
-
+        
         var displayCityName = document.createElement('h2');
         displayCityName.innerHTML = searchCity + ' ('+ today + ')' //+ response.list[0].weather.icon;
         responseContainerEl.appendChild(displayCityName);
+
+        var locationIcon = document.querySelector('.weather-icon');
+        locationIcon.getElementsByTagName("img")[0].src= 'http://openweathermap.org/img/wn/' + icon + '.png' ;
 
         var temperature = document.getElementById('temperature');
         temperature.innerHTML = 'Temperature: ' + fTemp + ' °F'
@@ -82,6 +88,10 @@ function displayCity(){
         day1Value = day1ValFmt.format("MM/DD/YYYY");
         day1.innerHTML = day1Value;
 
+        var icon = response.list[0].weather[0].icon;
+        var locationIcon = document.querySelector('.weather-icon1');
+        locationIcon.getElementsByTagName("img")[0].src= 'http://openweathermap.org/img/wn/' + icon + '.png' ;
+
         var temperature1 = document.getElementById('card-temp1');
         var kelTemp1 = response.list[1].main.temp;
         var fTemp1 = Math.round((kelTemp1-273.15)*9/5+32) ;    
@@ -97,6 +107,10 @@ function displayCity(){
         day2ValFmt = moment(day2Val, "YYYY-MM-DD h:mm:ss");
         day2Value = day2ValFmt.format("MM/DD/YYYY");
         day2.innerHTML = day2Value;
+
+        var icon = response.list[6].weather[0].icon;
+        var locationIcon = document.querySelector('.weather-icon2');
+        locationIcon.getElementsByTagName("img")[0].src= 'http://openweathermap.org/img/wn/' + icon + '.png' ;
 
         var temperature2 = document.getElementById('card-temp2');
         var kelTemp2 = response.list[6].main.temp;
@@ -114,6 +128,10 @@ function displayCity(){
         day3Value = day3ValFmt.format("MM/DD/YYYY");
         day3.innerHTML = day3Value;
 
+        var icon = response.list[12].weather[0].icon;
+        var locationIcon = document.querySelector('.weather-icon3');
+        locationIcon.getElementsByTagName("img")[0].src= 'http://openweathermap.org/img/wn/' + icon + '.png' ;
+
         var temperature3 = document.getElementById('card-temp3');
         var kelTemp3 = response.list[12].main.temp;
         var fTemp3 = Math.round((kelTemp3-273.15)*9/5+32) ;    
@@ -130,6 +148,10 @@ function displayCity(){
         day4Value = day4ValFmt.format("MM/DD/YYYY");
         day4.innerHTML = day4Value;
 
+        var icon = response.list[18].weather[0].icon;
+        var locationIcon = document.querySelector('.weather-icon4');
+        locationIcon.getElementsByTagName("img")[0].src= 'http://openweathermap.org/img/wn/' + icon + '.png' ;
+
         var temperature4 = document.getElementById('card-temp4');
         var kelTemp4 = response.list[18].main.temp;
         var fTemp4 = Math.round((kelTemp4-273.15)*9/5+32) ;    
@@ -145,6 +167,10 @@ function displayCity(){
         day5ValFmt = moment(day5Val, "YYYY-MM-DD h:mm:ss");
         day5Value = day5ValFmt.format("MM/DD/YYYY");
         day5.innerHTML = day5Value;
+
+        var icon = response.list[24].weather[0].icon;
+        var locationIcon = document.querySelector('.weather-icon5');
+        locationIcon.getElementsByTagName("img")[0].src= 'http://openweathermap.org/img/wn/' + icon + '.png' ;
 
         var temperature5 = document.getElementById('card-temp5');
         var kelTemp5 = response.list[24].main.temp;
