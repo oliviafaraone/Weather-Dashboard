@@ -3,11 +3,18 @@
 //generate todays date in (MM/DD/YYYY) format
 let [month, date, year]  = new Date().toLocaleDateString("en-US").split("/")
 let today = (month + '/' + date + '/' + year);
+allCities = [];
+
+function clearBox(elementID)
+{
+    document.getElementById(elementID).innerHTML = "";
+} ;
 
 //search city in weather api
 function displayCity(){
     
     var searchCity = document.querySelector('#searchCity').value;
+    document.getElementById('searchCity').value=' ';
     var api_key = '2793445b72933fa193fcc65752f1319c'
     
     fetch(
@@ -24,10 +31,6 @@ function displayCity(){
         var wind = response.list[0].wind.speed;
         var icon = response.list[0].weather[0].icon;
         
-       // var uv = ;
-       console.log(response);
-       console.log(icon);
-
        //Calculate UV Index
        var lat = response.city.coord.lat;
        var lon = response.city.coord.lon;
@@ -37,33 +40,43 @@ function displayCity(){
         return response.json();
        }).then(function(response){
         var uv = response.value;
+        console.log(uv);
 
         var uvIndex = document.getElementById('uvIndex');
         uvIndex.innerHTML = 'UV Index: ' + uv ;
 
-        var uvColors =function(){
-            if (uv < 3){
+        var uvColors = function(){
+            if (uv < 3.00){
             uvIndex.setAttribute("class","low");
-        } else if (3 < uv < 6){
+            console.log('low');
+        } else if (uv < 6.00){
             uvIndex.setAttribute("class","mod");
-        } else if (7 < uv < 8){
+            console.log('mod');
+        } else if (uv < 8.00){
             uvIndex.setAttribute("class","high");
-        } else if (9 < uv < 11){
+            console.log('high');
+        } else if (uv < 11.00){
             uvIndex.setAttribute("class","vHigh");
-        } else if (12 < uv){
+            console.log('vhigh');
+        } else if (12.01 < uv){
             uvIndex.setAttribute("class","extr");
-        }
-       };
+            console.log('extr');
+        }}
+       ;
 
        uvColors();
 
     }) 
        ;
 
+       
+
        //display city name, temp, hum, wind, UV in city-today div
         var responseContainerEl = document.querySelector('#city-today');
+        responseContainerEl.innerHTML="";
         
         var displayCityName = document.createElement('h2');
+        displayCityName.setAttribute("id","curCity");
         displayCityName.innerHTML = searchCity + ' ('+ today + ')' //+ response.list[0].weather.icon;
         responseContainerEl.appendChild(displayCityName);
 
@@ -181,16 +194,35 @@ function displayCity(){
         var humid5 = response.list[24].main.humidity;
         humidity5.innerHTML = 'Humidity: ' + humid5 + '%';
 
-        //empty user input of city and add city name to ul city-list array
-        allCities = [];
+        // add city name to ul city-list array
 
         var city = document.getElementById('city-list');
-        city.innerHTML = searchCity;
+        city.innerHTML = " ";
 
         allCities.push(searchCity);
 
-        })};
+        localStorage.setItem("allCities", JSON.stringify(allCities));
 
+
+        function displayStoredCities (){
+            for (i=0; i < allCities.length; i++){
+                
+                var cityContainerEl = document.querySelector('#city-list');
+
+                var cityList = document.createElement("li");
+                cityList.setAttribute("id",i);
+                var storedCities = JSON.parse(localStorage.getItem("allCities"));
+                cityList.innerHTML = storedCities[i];
+                cityContainerEl.appendChild(cityList);
+
+            }
+
+        };
+
+        displayStoredCities();
+
+
+        })};
 
 
 
