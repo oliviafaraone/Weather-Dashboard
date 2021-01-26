@@ -22,6 +22,8 @@ THEN I am again presented with current and future conditions for that city
 
 Screenshot of site:
 https://github.com/oliviafaraone/Weather-Dashboard/assets/live-site.png
+![GitHub Logo](/images/logo.png)
+Format: ![Alt Text](url)
 
 Live Site:
 https://oliviafaraone.github.io/Weather-Dashboard/
