@@ -24,3 +24,4 @@ Screenshot of site:
 https://github.com/oliviafaraone/Weather-Dashboard/assets/live-site.png
 
 Live Site:
+https://oliviafaraone.github.io/Weather-Dashboard/
